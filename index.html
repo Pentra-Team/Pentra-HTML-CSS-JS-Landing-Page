@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <!-- أيقونة النجمتين (نستخدمها بأكثر من مكان) -->
+  <!-- أيقونة النجمتين -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="sparkle" viewBox="0 0 16 16">
       <g fill="#fff" stroke="#fff" stroke-width="1" stroke-linejoin="round">
@@ -35,18 +35,25 @@
         </span>
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="navLinks">
         <a href="#" class="nav-link active">الرئيسية</a>
         <a href="#" class="nav-link">التخصصات</a>
         <a href="#" class="nav-link">كيف تعمل بنترا</a>
         <a href="#" class="nav-link">المدربون</a>
         <a href="#" class="nav-link">المراكز التدريبية</a>
         <a href="#" class="nav-link">من نحن</a>
+        <a href="#" class="nav-link mobile-only">تسجيل الدخول</a>
       </nav>
 
       <div class="nav-actions">
         <a href="#" class="login-link">تسجيل الدخول</a>
         <a href="#" class="btn-signup">إنشاء حساب</a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="navLinks">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#151D32" stroke-width="2" stroke-linecap="round">
+            <path class="bars" d="M4 7h16M4 12h16M4 17h16"/>
+            <path class="close" d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
       </div>
 
     </div>
@@ -54,91 +61,101 @@
 
   <!-- ================= Hero ================= -->
   <main>
-    <section class="hero" id="hero">
-      <div class="hero-inner" id="heroInner">
+    <section class="hero">
+      <div class="hero-inner">
 
-        <!-- الجهة اليمين: النصوص -->
-        <div class="badge">
-          <span class="badge-icon">
-            <svg width="16" height="16"><use href="#sparkle"/></svg>
-          </span>
-          <span class="badge-text">مساحتك لاكتشاف إمكانياتك</span>
-        </div>
+        <!-- النصوص -->
+        <div class="hero-text">
 
-        <h1 class="hero-title">
-          اكتشف مهاراتك،<br>
-          وابدأ <span class="grad">رحلتك التعليمية</span>
-        </h1>
-
-        <p class="hero-desc">
-          في بنترا، نساعدك على تحديد مستواك، واختيار الدورات والمسارات التعليمية المناسبة لك، لتطور مهاراتك وتحقق أهدافك بثقة.
-        </p>
-
-        <div class="cta-row">
-          <a href="#" class="how-link">كيف تعمل بنترا؟</a>
-          <a href="#" class="btn-cta">
-            <span>اكتشف الدورات</span>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 9H4"/>
-              <path d="M8.5 4.5L4 9l4.5 4.5"/>
-            </svg>
-          </a>
-        </div>
-
-        <div class="check-row">
-          <span class="check-circle">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 10.3l2.7 2.6L14 7.1"/>
-            </svg>
-          </span>
-          <span class="check-text">تعلّم بطريقة تناسب مستواك وأهدافك.</span>
-        </div>
-
-        <!-- الجهة اليسار: المجسم -->
-        <div class="float-card">
-          <span class="fc-blue"></span>
-          <span class="fc-line"></span>
-        </div>
-
-        <div class="course-card">
-          <div class="cc-header">
-            <span>مساري التعليمي</span>
+          <div class="badge">
+            <span class="badge-icon">
+              <svg width="16" height="16"><use href="#sparkle"/></svg>
+            </span>
+            <span class="badge-text">مساحتك لاكتشاف إمكانياتك</span>
           </div>
-          <div class="cc-body">
-            <div class="cc-media">
-              <span class="cc-circle cc-circle-top"></span>
-              <span class="cc-circle cc-circle-bottom"></span>
-              <span class="cc-play">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5865F2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-                  <path d="M9 6.2L17.5 12 9 17.8Z"/>
-                </svg>
+
+          <h1 class="hero-title">
+            اكتشف مهاراتك،<br>
+            وابدأ <span class="grad">رحلتك التعليمية</span>
+          </h1>
+
+          <p class="hero-desc">
+            في بنترا، نساعدك على تحديد مستواك، واختيار الدورات والمسارات التعليمية المناسبة لك، لتطور مهاراتك وتحقق أهدافك بثقة.
+          </p>
+
+          <div class="cta-row">
+            <a href="#" class="how-link">كيف تعمل بنترا؟</a>
+            <a href="#" class="btn-cta">
+              <span>اكتشف الدورات</span>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 9H4"/>
+                <path d="M8.5 4.5L4 9l4.5 4.5"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="check-row">
+            <span class="check-circle">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 10.3l2.7 2.6L14 7.1"/>
+              </svg>
+            </span>
+            <span class="check-text">تعلّم بطريقة تناسب مستواك وأهدافك.</span>
+          </div>
+
+        </div>
+
+        <!-- المجسم: لوحة 600x540 بتتكبّر وتتصغّر حسب العرض -->
+        <div class="visual" id="visual">
+          <div class="stage" id="stage">
+
+            <div class="float-card">
+              <span class="fc-blue"></span>
+              <span class="fc-line"></span>
+            </div>
+
+            <div class="course-card">
+              <div class="cc-header">
+                <span>مساري التعليمي</span>
+              </div>
+              <div class="cc-body">
+                <div class="cc-media">
+                  <span class="cc-circle cc-circle-top"></span>
+                  <span class="cc-circle cc-circle-bottom"></span>
+                  <span class="cc-play">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5865F2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+                      <path d="M9 6.2L17.5 12 9 17.8Z"/>
+                    </svg>
+                  </span>
+                </div>
+                <span class="cc-unit">الوحدة الرابعة</span>
+                <h3 class="cc-title">بناء أول مشروع تطبيقي</h3>
+                <div class="cc-lines">
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stats-card">
+              <span class="stats-label">تقدمك هذا الأسبوع</span>
+              <span class="stats-value">78%</span>
+              <div class="stats-bar"><div class="stats-fill"></div></div>
+            </div>
+
+            <img class="robot" src="images/banar.png" alt="روبوت بنترا">
+
+            <div class="welcome-chip">
+              <div class="wc-text">
+                <span class="wc-title">أهلًا بك!</span>
+                <span class="wc-sub">جاهز نبدأ؟</span>
+              </div>
+              <span class="wc-icon">
+                <svg width="14" height="14"><use href="#sparkle"/></svg>
               </span>
             </div>
-            <span class="cc-unit">الوحدة الرابعة</span>
-            <h3 class="cc-title">بناء أول مشروع تطبيقي</h3>
-            <div class="cc-lines">
-              <span></span>
-              <span></span>
-            </div>
+
           </div>
-        </div>
-
-        <div class="stats-card">
-          <span class="stats-label">تقدمك هذا الأسبوع</span>
-          <span class="stats-value">78%</span>
-          <div class="stats-bar"><div class="stats-fill"></div></div>
-        </div>
-
-        <img class="robot" src="images/banar.png" alt="روبوت بنترا">
-
-        <div class="welcome-chip">
-          <div class="wc-text">
-            <span class="wc-title">أهلًا بك!</span>
-            <span class="wc-sub">جاهز نبدأ؟</span>
-          </div>
-          <span class="wc-icon">
-            <svg width="14" height="14"><use href="#sparkle"/></svg>
-          </span>
         </div>
 
       </div>
