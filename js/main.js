@@ -29,7 +29,7 @@ window.addEventListener('resize', () => {
   if (document.documentElement.clientWidth > 1023) closeMenu();
 });
 
-// ---------- 3) تبديل الرابط النشط ----------
+// ---------- تبديل الرابط النشط + النقل للسيكشن ----------
 const navLinks = document.querySelectorAll('.nav-link:not(.mobile-only)');
 navLinks.forEach((link) => {
   link.addEventListener('click', (e) => {
@@ -37,11 +37,35 @@ navLinks.forEach((link) => {
     navLinks.forEach((l) => l.classList.remove('active'));
     link.classList.add('active');
     closeMenu();
+
+    const target = link.getAttribute('href');
+    if (target && target.length > 1) {
+      document.querySelector(target)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 });
-
 // ---------- 4) ظل خفيف للنافبار عند النزول ----------
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 8);
 });
+
+// ---------- ظهور العناصر تدريجياً عند النزول ----------
+const revealEls = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealEls.forEach((el) => io.observe(el));
+} else {
+  revealEls.forEach((el) => el.classList.add('visible'));
+}
