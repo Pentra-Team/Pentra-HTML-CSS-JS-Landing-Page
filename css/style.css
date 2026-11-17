@@ -169,7 +169,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* ---------- النصوص ---------- */
 .hero-text {
-  flex: 0 1 560px;
+  flex: 0 1 600px;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -214,6 +214,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #151D32;
 }
 .hero-title .grad {
+  white-space: nowrap;
   font-weight: 800;
   font-size: 1.032em;
   background: linear-gradient(90deg, #22D3EE 0%, #5865F2 80%);
