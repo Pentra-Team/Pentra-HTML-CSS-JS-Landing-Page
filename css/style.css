@@ -766,3 +766,249 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   /* على اللمس ما في هوفر، فبنظهر السهم دايماً */
   .cat-arrow { opacity: 1; transform: none; top: 22px; left: 22px; }
 }
+
+/* ================= Journey ================= */
+.journey {
+  padding: 96px 0 120px;
+  background: #FFFFFF;
+}
+.journey .section-head { margin-bottom: 72px; }
+.journey .eyebrow { letter-spacing: 0.42px; }
+.journey .section-title {
+  max-width: 628px;
+  line-height: 1.196;
+  letter-spacing: -0.034em;
+}
+.journey .section-sub {
+  max-width: 479px;
+  margin-top: 26px;
+  font-size: 18px;
+  line-height: 34.2px;
+  color: #737784;
+}
+
+/* ---------- الشريط ---------- */
+.stepper {
+  list-style: none;
+  display: flex;
+}
+.step {
+  --dir: 270deg;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* الخط الواصل للخطوة الي بعدها (على يسارها) */
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 21.5px;
+  left: calc(-50% + 22.5px);
+  width: calc(100% - 45px);
+  height: 2px;
+  border-radius: 2px;
+  background: #151D32;
+}
+.step.seg-todo:not(:last-child)::after {
+  background: linear-gradient(var(--dir), var(--c1), var(--c2));
+}
+
+.step-btn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 0 6px;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.step-dot {
+  position: relative;
+  z-index: 1;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #0B1020;
+  background: #EEF0FE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s ease, border-color .3s ease, box-shadow .3s ease, transform .25s ease;
+}
+.step-btn:hover .step-dot { transform: scale(1.07); }
+.step-btn:focus-visible { outline: 2px solid #5865F2; outline-offset: 4px; border-radius: 10px; }
+
+.step-num {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  color: #151D32;
+}
+.step-check { display: none; }
+
+/* منتهية */
+.step.is-done .step-dot {
+  background: #151D32;
+  border-color: #A8B5CF;
+}
+.step.is-done .step-num { display: none; }
+.step.is-done .step-check { display: block; }
+
+/* الحالية */
+.step.is-current .step-dot {
+  background: #E9FBFD;
+  border-color: #22D3EE;
+  box-shadow: 0 0 0 7px #22D3EE1A;
+}
+
+.step-label {
+  max-width: 139px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16.5px;
+  text-align: center;
+  text-wrap: balance;
+  color: #717B90;
+  transition: color .3s ease;
+}
+.step.is-current .step-label { color: #151D32; }
+
+/* ---------- البانر ---------- */
+.step-banner {
+  position: relative;
+  max-width: 820px;
+  min-height: 150px;
+  margin: 64px auto 0;
+  padding: 24px 44px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #61CCFC -16.77%, #3F6AB7 100%);
+  box-shadow: 0 20px 44px rgba(63, 106, 183, 0.25);
+  overflow: hidden;
+}
+.step-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 12% 130%, rgba(255, 255, 255, 0.28), transparent 55%);
+  pointer-events: none;
+}
+.step-banner > * { position: relative; }
+
+.sb-num {
+  min-width: 62px;
+  font-weight: 500;
+  font-size: 55px;
+  line-height: 82.5px;
+  color: #FFFFFF;
+  opacity: 0.9;
+}
+.sb-text { display: flex; flex-direction: column; min-width: 0; }
+.sb-label {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 15px;
+  color: #242B71;
+}
+.sb-title {
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 36px;
+  color: #FFFFFF;
+}
+.sb-desc {
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: #FFFFFF;
+}
+
+.sb-actions {
+  margin-inline-start: auto;
+  display: flex;
+  gap: 8px;
+}
+.sb-btn {
+  width: 37px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #FFFFFF80;
+  background: #FFFFFFB0;
+  transition: background .2s ease, transform .15s ease, opacity .2s ease;
+}
+.sb-btn:hover:not(:disabled) { background: #FFFFFF; transform: translateY(-2px); }
+.sb-btn:active:not(:disabled) { transform: scale(.94); }
+.sb-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* حركة تبديل المحتوى */
+.swap { animation: swapIn .45s ease both; }
+@keyframes swapIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) { .swap { animation: none; } }
+
+/* ---------- تابلت ---------- */
+@media (max-width: 1023px) {
+  .journey { padding: 72px 0 90px; }
+  .journey .section-head { margin-bottom: 48px; }
+  .step-label { font-size: 13px; }
+}
+
+/* ---------- موبايل: الشريط يصير عمودي ---------- */
+@media (max-width: 760px) {
+  .stepper { flex-direction: column; }
+  .step {
+    --dir: 180deg;
+    flex: none;
+    padding-bottom: 30px;
+  }
+  .step:last-child { padding-bottom: 0; }
+
+  .step:not(:last-child)::after {
+    top: 45px;
+    left: auto;
+    right: 21.5px;
+    width: 2px;
+    height: 30px;
+  }
+
+  .step-btn {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0;
+  }
+  .step-label {
+    max-width: none;
+    font-size: 15px;
+    text-align: right;
+  }
+}
+
+@media (max-width: 640px) {
+  .journey { padding: 56px 0 72px; }
+  .journey .section-sub { font-size: 16px; line-height: 28.8px; }
+  .step-banner {
+    margin-top: 40px;
+    padding: 24px 22px;
+    flex-wrap: wrap;
+    gap: 16px 20px;
+  }
+  .sb-num { font-size: 44px; line-height: 1.2; min-width: 0; }
+  .sb-title { font-size: 21px; line-height: 30px; }
+  .sb-text { flex: 1; }
+  .sb-actions { width: 100%; margin-inline-start: 0; }
+}

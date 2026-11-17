@@ -69,3 +69,101 @@ if ('IntersectionObserver' in window) {
 } else {
   revealEls.forEach((el) => el.classList.add('visible'));
 }
+
+// ---------- Journey: الشريط والبانر ----------
+const STEPS = [
+  { label: 'أنشئ حسابك',            desc: 'سجّل بياناتك الأساسية وفعّل حسابك بخطوات بسيطة.' },
+  { label: 'اكتشف التخصص والدورة',  desc: 'تصفّح التخصصات واختر الدورة الأنسب لاهتمامك.' },
+  { label: 'سجّل وأكمل الدفع',      desc: 'أكّد تسجيلك في الدورة وأتمم الدفع بأمان.' },
+  { label: 'اختبر مستواك',          desc: 'أكمل اختبار التخصص الإلزامي قبل المحتوى.' },
+  { label: 'ابدأ التعلم',           desc: 'ابدأ دروسك وفق المسار المناسب لمستواك.' },
+  { label: 'تابع تقدمك',            desc: 'راقب إنجازك وتقدمك في كل وحدة بسهولة.' },
+  { label: 'احصل على شهادتك',       desc: 'أنهِ المسار واحصل على شهادة توثّق إنجازك.' },
+];
+
+const stepperEl = document.getElementById('stepper');
+const sbNum = document.getElementById('sbNum');
+const sbText = document.getElementById('sbText');
+const sbTitle = document.getElementById('sbTitle');
+const sbDesc = document.getElementById('sbDesc');
+const prevStep = document.getElementById('prevStep');
+const nextStep = document.getElementById('nextStep');
+
+let currentStep = 4;   // الخطوة الافتراضية زي التصميم
+
+const pad = (n) => String(n).padStart(2, '0');
+const CYAN = [34, 211, 238];
+const BLUE = [88, 101, 242];
+const mixColor = (t) =>
+  `rgb(${CYAN.map((c, i) => Math.round(c + (BLUE[i] - c) * t)).join(',')})`;
+
+const CHECK_SVG =
+  '<svg class="step-check" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.3 8.3l3 2.9 6.4-6.4"/></svg>';
+
+// بناء الخطوات
+STEPS.forEach((step, i) => {
+  const li = document.createElement('li');
+  li.className = 'step';
+  li.innerHTML = `
+    <button type="button" class="step-btn" data-step="${i + 1}">
+      <span class="step-dot">
+        <span class="step-num">${pad(i + 1)}</span>
+        ${CHECK_SVG}
+      </span>
+      <span class="step-label">${step.label}</span>
+    </button>`;
+  stepperEl.appendChild(li);
+});
+const stepEls = Array.from(stepperEl.children);
+
+function updateJourney(animate) {
+  const total = STEPS.length;
+  const todoSegments = total - currentStep;   // عدد الخطوط الزرقاء
+
+  stepEls.forEach((li, i) => {
+    const n = i + 1;
+    li.classList.toggle('is-done', n < currentStep);
+    li.classList.toggle('is-current', n === currentStep);
+    li.classList.toggle('seg-todo', n >= currentStep);   // الخط بين n و n+1
+
+    if (n >= currentStep && todoSegments > 0) {
+      const k = n - currentStep;
+      li.style.setProperty('--c1', mixColor(k / todoSegments));
+      li.style.setProperty('--c2', mixColor((k + 1) / todoSegments));
+    }
+
+    li.querySelector('.step-btn').setAttribute('aria-current', n === currentStep ? 'step' : 'false');
+  });
+
+  const step = STEPS[currentStep - 1];
+  sbNum.textContent = pad(currentStep);
+  sbTitle.textContent = step.label;
+  sbDesc.textContent = step.desc;
+  prevStep.disabled = currentStep === 1;
+  nextStep.disabled = currentStep === total;
+
+  if (animate) {
+    [sbNum, sbText].forEach((el) => {
+      el.classList.remove('swap');
+      void el.offsetWidth;          // لإعادة تشغيل الحركة
+      el.classList.add('swap');
+    });
+  }
+}
+
+stepperEl.addEventListener('click', (e) => {
+  const btn = e.target.closest('.step-btn');
+  if (!btn) return;
+  currentStep = Number(btn.dataset.step);
+  updateJourney(true);
+});
+
+// بالـ RTL: الخطوات بتمشي من اليمين لليسار، فالسهم الأيسر = التالي
+prevStep.addEventListener('click', () => {
+  if (currentStep > 1) { currentStep--; updateJourney(true); }
+});
+nextStep.addEventListener('click', () => {
+  if (currentStep < STEPS.length) { currentStep++; updateJourney(true); }
+});
+
+updateJourney(false);
