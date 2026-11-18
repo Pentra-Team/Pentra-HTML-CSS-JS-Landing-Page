@@ -1335,3 +1335,157 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .paths-inner { width: calc(100% - 32px); }
   .btn-paths { width: 100%; }
 }
+
+/* ================= Coaches ================= */
+.coaches {
+  padding: 104px 0;
+  background: #FFFFFF;
+}
+
+/* الهيدر: النص يمين، والزر يسار */
+.coaches-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 60px;
+}
+.coaches-head-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.coaches .eyebrow { font-size: 13px; }
+.coaches .section-title { margin-top: 28px; }
+.coaches .section-sub { margin-top: 14px; }
+.btn-all {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+/* الشبكة */
+.coach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* الكرت: النص يمين والصورة يسار */
+.coach-card {
+  position: relative;
+  display: flex;
+    flex-direction: row-reverse;   /* الصورة يمين، والنص يسار */
+  min-height: 255px;
+  background: #FFFFFF;
+  border: 1px solid #E7EBF2;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.coach-card:hover,
+.coach-card:focus-within {
+  transform: translateY(-4px);
+  border-color: #E1E6F0;
+  box-shadow: 0 4px 18px 0 #50505040;
+}
+
+.coach-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 20px 20px;
+}
+.coach-role {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 15px;
+  color: #5865F2;
+}
+.coach-name {
+  margin: 7px 0 9px;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 28.5px;
+  color: #151D32;
+}
+.coach-desc {
+  margin-bottom: 18px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 21px;
+  color: #6F7C96;
+}
+
+.coach-link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-end;
+  gap: 5px;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16.5px;
+  color: #5865F2;
+}
+.coach-link svg { transition: transform .25s ease; }
+.coach-link:hover svg,
+.coach-card:hover .coach-link svg { transform: translateX(-4px); }
+
+.coach-photo {
+  flex: 0 0 167.16px;
+  background: #F1F5FB;
+  overflow: hidden;
+}
+.coach-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform .6s ease;
+}
+.coach-card:hover .coach-photo img { transform: scale(1.06); }
+
+/* ---------- لابتوب صغير وتابلت: عمودين ---------- */
+@media (max-width: 1199px) {
+  .coach-grid { grid-template-columns: repeat(2, 1fr); }
+  .coach-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .coaches { padding: 72px 0 80px; }
+  .coaches-head {
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 44px;
+  }
+}
+
+/* ---------- عمود واحد ---------- */
+@media (max-width: 760px) {
+  .coach-grid { grid-template-columns: 1fr; }
+  .coach-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    width: 100%;
+  }
+}
+
+/* ---------- موبايل: الصورة فوق والنص تحتها ---------- */
+@media (max-width: 520px) {
+  .coaches { padding: 56px 0 64px; }
+  .coach-card { flex-direction: column-reverse; }
+  .coach-photo {
+    flex: none;
+    height: 260px;
+  }
+  .coach-photo img { object-position: center 20%; }
+  .coach-body { padding: 22px 20px 22px; }
+  .coach-link { margin-top: 4px; }
+  .btn-all { width: 100%; }
+}
