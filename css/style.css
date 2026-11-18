@@ -1013,3 +1013,325 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .sb-text { flex: 1; }
   .sb-actions { width: 100%; margin-inline-start: 0; }
 }
+
+/* ================= Learning Paths ================= */
+.paths {
+  padding: 105px 0;
+  overflow: hidden;
+  background:
+    radial-gradient(88.71% 185.13% at 80% 20%, rgba(34, 211, 238, 0.1) 0%, rgba(34, 211, 238, 0) 30%),
+    linear-gradient(120deg, #F1F5FF 7.74%, #F6FCFF 92.26%);
+}
+
+.paths-inner {
+  width: min(1240px, 100% - 48px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* ---------- النصوص ---------- */
+.paths-text {
+  flex: 0 1 489px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.paths-title {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(32px, 3.6vw, 52px);
+  line-height: 1.154;
+  letter-spacing: -0.02em;
+  color: #151D32;
+}
+.pt-light { font-weight: 400; }
+.pt-bold  { font-weight: 800; }
+
+.paths-desc {
+  margin-top: 22px;
+  max-width: 420px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28.8px;
+  color: #6F7C96;
+}
+
+.btn-paths {
+  margin-top: 32px;
+  min-height: 46px;
+  padding: 0 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 12px;
+  background: #5865F2;
+  box-shadow: 0 9px 22px 0 #5865F238;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  white-space: nowrap;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+}
+.btn-paths:hover {
+  background: #4752d6;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px 0 #5865F24D;
+}
+.btn-paths:active { transform: scale(.98); }
+.btn-paths svg { transition: transform .25s ease; }
+.btn-paths:hover svg { transform: translateX(-4px); }
+
+/* ---------- المجسم ---------- */
+.paths-visual {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 661px;
+  aspect-ratio: 661.25 / 480;
+}
+.paths-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 661.25px;
+  height: 480px;
+  transform-origin: top left;
+}
+.paths-stage > * { position: absolute; }
+
+/* الدائرة الخلفية */
+.ps-bg {
+  left: 120.63px;
+  top: 30px;
+  width: 420px;
+  height: 420px;
+  border-radius: 210px;
+  background: linear-gradient(135deg, rgba(88, 101, 242, 0.09) 0%, rgba(34, 211, 238, 0.1) 100%);
+}
+
+/* الكرت */
+.path-card {
+  left: 99.58px;
+  top: 31.06px;
+  width: 455px;
+  height: 410px;
+  padding: 27px;
+  border-radius: 20px;
+  border: 1px solid #FFFFFFE5;
+  background: #FFFFFFF5;
+  box-shadow: 0 28px 65px 0 #26376924;
+  transform: rotate(1deg);
+}
+
+.pc-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pc-head-text { display: flex; flex-direction: column; }
+.pc-label {
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16.5px;
+  color: #5865F2;
+}
+.pc-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #151D32;
+}
+.pc-percent {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 33px;
+  color: #5865F2;
+}
+
+/* شريط التقدم */
+.pc-progress {
+  margin-top: 18px;
+  height: 7px;
+  border-radius: 8px;
+  background: #EDF0F6;
+  overflow: hidden;
+}
+.pc-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #22D3EE 0%, #5865F2 100%);
+  transition: width 1.3s cubic-bezier(.22, .8, .3, 1) .5s;
+}
+.paths-visual.visible .pc-fill { width: 60%; }
+
+/* قائمة الخطوات */
+.pc-steps {
+  position: relative;
+  margin-top: 28px;
+  list-style: none;
+}
+.pc-steps::before {          /* الخط الواصل بين الدوائر */
+  content: "";
+  position: absolute;
+  right: 17px;
+  top: 32px;
+  bottom: 32px;
+  width: 2px;
+  background: #E4E8F1;
+}
+
+.pc-step {
+  position: relative;
+  margin: 0 -10px;
+  padding: 14px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 10px;
+}
+.pc-step.is-current { background: #5865F20B; }
+
+.pc-dot {
+  position: relative;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  border: 2px solid #DDE2EB;
+  background: #FFFFFF;
+  font-weight: 800;
+  font-size: 11px;
+  line-height: 16.5px;
+  color: #9BA4B5;
+}
+.pc-step.is-done .pc-dot {
+  background: #42D2BD;
+  border-color: #42D2BD;
+}
+.pc-step.is-current .pc-dot {
+  background: #5865F2;
+  border-color: #5865F2;
+  color: #FFFFFF;
+  box-shadow: 0 0 0 5px #5865F21A;
+}
+
+.pc-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.pc-small {
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 13.5px;
+  color: #A0A9B8;
+}
+.pc-name {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: #151D32;
+}
+
+.pc-badge {
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #F5F7FA;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 13.5px;
+  color: #9AA4B6;
+  white-space: nowrap;
+}
+.pc-step.is-current .pc-badge {
+  background: #5865F217;
+  color: #5865F2;
+}
+
+/* الكرت الصغير تحت */
+.path-chip {
+  left: 0;
+  top: 423.52px;
+  width: 195px;
+  height: 62px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  box-shadow: 0 15px 35px 0 #28376529;
+  animation: floaty 5s ease-in-out infinite;
+}
+.chip-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #5865F2 0%, #22D3EE 100%);
+}
+.chip-text { display: flex; flex-direction: column; }
+.chip-title {
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16.5px;
+  color: #151D32;
+}
+.chip-sub {
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 13.5px;
+  color: #6F7C96;
+}
+@keyframes floaty {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .path-chip { animation: none; }
+  .pc-fill { transition: none; }
+}
+
+/* ---------- تابلت ---------- */
+@media (max-width: 1023px) {
+  .paths { padding: 72px 0 80px; }
+  .paths-inner {
+    flex-direction: column;
+    gap: 48px;
+  }
+  .paths-text {
+    flex: none;
+    width: 100%;
+    max-width: 560px;
+    align-items: center;
+    text-align: center;
+  }
+  .paths-title { font-size: clamp(34px, 7vw, 52px); }
+  .paths-visual {
+    flex: none;
+    width: min(100%, 600px);
+  }
+}
+
+/* ---------- موبايل ---------- */
+@media (max-width: 640px) {
+  .paths { padding: 56px 0 64px; }
+  .paths-inner { width: calc(100% - 32px); }
+  .btn-paths { width: 100%; }
+}

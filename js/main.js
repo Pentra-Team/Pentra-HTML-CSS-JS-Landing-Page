@@ -167,3 +167,14 @@ nextStep.addEventListener('click', () => {
 });
 
 updateJourney(false);
+
+// ---------- Paths: تكبير وتصغير المجسم حسب عرضه ----------
+const pathsVisual = document.getElementById('pathsVisual');
+const pathsStage = document.getElementById('pathsStage');
+const PATHS_STAGE_WIDTH = 661.25;
+
+function fitPathsStage() {
+  pathsStage.style.transform = `scale(${pathsVisual.clientWidth / PATHS_STAGE_WIDTH})`;
+}
+fitPathsStage();
+new ResizeObserver(fitPathsStage).observe(pathsVisual);
