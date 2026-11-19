@@ -1489,3 +1489,199 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .coach-link { margin-top: 4px; }
   .btn-all { width: 100%; }
 }
+
+/* ================= Training Centers ================= */
+.centers {
+  padding: 96px 0 110px;
+  background: #FFFFFF;
+}
+.centers .eyebrow { font-size: 13px; font-weight: 700; }
+.centers .section-title {
+  margin-top: 18px;
+  line-height: 1.17;
+  letter-spacing: -0.034em;
+}
+.centers .section-sub {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 30.6px;
+  color: #6F7C94;
+}
+
+/* الكرت الكبير */
+.centers-card {
+  display: flex;                 /* أول عنصر بالـ DOM (الصورة) بيطلع يمين */
+  min-height: 593px;
+  border-radius: 24px;
+  border: 1px solid #A8B5CF3B;
+  background: #FFFFFF;
+  box-shadow: 0 24px 70px 0 #151D3214;
+  overflow: hidden;
+}
+
+/* الصورة */
+.centers-media {
+  position: relative;
+  flex: 0 0 54.9%;               /* 681 من 1240 */
+  min-height: 510px;
+  overflow: hidden;
+  display: block;
+}
+.centers-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  transition: transform .8s ease;
+}
+.centers-media::after {          /* التعتيم الخفيف فوق الصورة */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90.22deg, rgba(0, 0, 0, 0.2) 21.52%, rgba(102, 102, 102, 0.2) 87.13%);
+  pointer-events: none;
+}
+.centers-media:hover img { transform: scale(1.05); }
+
+.cm-badge {
+  position: absolute;
+  z-index: 1;
+  right: 26px;
+  bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: rgba(21, 29, 50, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+/* المعلومات */
+.centers-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 52px;
+}
+.cb-eyebrow {
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 18px;
+  color: #5865F2;
+}
+.cb-title {
+  padding: 15px 0;
+  font-weight: 500;
+  font-size: clamp(24px, 2.2vw, 28px);
+  line-height: 1.4;
+  color: #151D32;
+}
+.cb-desc {
+  margin-bottom: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28.8px;
+  color: #748097;
+}
+
+/* القائمة */
+.cb-list {
+  width: 100%;
+  margin: 4px 0 40px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.cb-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 0;
+  border-bottom: 1px solid #A8B5CF33;
+}
+.cb-icon {
+  flex-shrink: 0;
+  color: #5865F2;
+  transition: transform .25s ease;
+}
+.cb-item:hover .cb-icon { transform: scale(1.12); }
+.cb-text { display: flex; flex-direction: column; }
+.cb-name {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: #151D32;
+  transition: color .2s ease;
+}
+.cb-item:hover .cb-name { color: #5865F2; }
+.cb-small {
+  padding-top: 3px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 15px;
+  color: #8793AA;
+}
+
+/* الزر */
+.cb-btn {
+  margin-top: auto;
+  min-height: 48px;
+  padding: 0 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 12px;
+  background: #5865F2;
+  box-shadow: 0 12px 28px 0 #5865F23D;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 15px;
+  white-space: nowrap;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+}
+.cb-btn:hover {
+  background: #4752d6;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px 0 #5865F25C;
+}
+.cb-btn:active { transform: scale(.98); }
+.cb-btn svg { transition: transform .25s ease; }
+.cb-btn:hover svg { transform: translateX(-4px); }
+
+/* ---------- تابلت وموبايل: الصورة فوق والمعلومات تحتها ---------- */
+@media (max-width: 1023px) {
+  .centers { padding: 72px 0 84px; }
+  .centers-card {
+    flex-direction: column;
+    min-height: 0;
+  }
+  .centers-media {
+    flex: none;
+    height: 360px;
+    min-height: 0;
+  }
+  .centers-body { padding: 36px 32px 36px; }
+}
+
+@media (max-width: 640px) {
+  .centers { padding: 56px 0 64px; }
+  .centers .section-sub { font-size: 16px; line-height: 28.8px; }
+  .centers-card { border-radius: 18px; }
+  .centers-media { height: 260px; }
+  .cm-badge { right: 16px; bottom: 16px; }
+  .centers-body { padding: 28px 22px; }
+  .cb-btn { width: 100%; }
+}
