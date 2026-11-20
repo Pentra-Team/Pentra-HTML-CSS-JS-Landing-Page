@@ -178,3 +178,59 @@ function fitPathsStage() {
 }
 fitPathsStage();
 new ResizeObserver(fitPathsStage).observe(pathsVisual);
+
+// ---------- About: تكبير وتصغير المجسم حسب عرضه ----------
+const aboutVisual = document.getElementById('aboutVisual');
+const aboutStage = document.getElementById('aboutStage');
+const ABOUT_STAGE_WIDTH = 560;
+
+function fitAboutStage() {
+  aboutStage.style.transform = `scale(${aboutVisual.clientWidth / ABOUT_STAGE_WIDTH})`;
+}
+fitAboutStage();
+new ResizeObserver(fitAboutStage).observe(aboutVisual);
+
+// ---------- Contact: فحص النموذج ----------
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+const checks = {
+  name:    (v) => v.trim().length >= 2,
+  email:   (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+  message: (v) => v.trim().length >= 5,
+};
+
+function setInvalid(fieldName, invalid) {
+  const field = contactForm.querySelector(`[data-field="${fieldName}"]`);
+  if (field) field.classList.toggle('invalid', invalid);
+}
+
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  formStatus.textContent = '';
+
+  let valid = true;
+  Object.keys(checks).forEach((name) => {
+    const ok = checks[name](contactForm.elements[name].value);
+    setInvalid(name, !ok);
+    if (!ok) valid = false;
+  });
+  if (!valid) return;
+
+  // مؤقتاً: ما في إرسال فعلي لأنو النموذج لسا مش مربوط بقناة تواصل رسمية.
+  // لما تجهز القناة، ابعتي البيانات هون بـ fetch.
+  const data = Object.fromEntries(new FormData(contactForm).entries());
+  console.log('Contact form data:', data);
+
+  formStatus.textContent = 'شكرًا لك! سنفعّل الإرسال فور ربط النموذج بقنوات التواصل الرسمية.';
+  contactForm.reset();
+});
+
+// شيل علامة الخطأ أول ما المستخدم يكتب
+contactForm.querySelectorAll('input, textarea').forEach((el) => {
+  el.addEventListener('input', () => {
+    const field = el.closest('.field');
+    if (field) field.classList.remove('invalid');
+  });
+});
+
