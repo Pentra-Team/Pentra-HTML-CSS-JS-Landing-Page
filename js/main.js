@@ -234,3 +234,9 @@ contactForm.querySelectorAll('input, textarea').forEach((el) => {
   });
 });
 
+
+// ---------- Footer: العودة للأعلى ----------
+document.getElementById('toTop').addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
